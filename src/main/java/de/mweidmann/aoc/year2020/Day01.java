@@ -17,7 +17,7 @@ public class Day01 extends AbstractDay2020 {
     }
 
     @Override
-    protected Integer partOne() {
+    protected int partOne() {
         for (Integer firstNumber : this.inputAsNumbers) {
             Optional<Integer> secondNumber = this.inputAsNumbers.stream()
                     .filter(number -> firstNumber + number == 2020)
@@ -32,7 +32,7 @@ public class Day01 extends AbstractDay2020 {
     }
 
     @Override
-    protected Integer partTwo() {
+    protected int partTwo() {
         for (Integer firstNumber : this.inputAsNumbers) {
             for (Integer secondNumber : this.inputAsNumbers) {
                 for (Integer thirdNumber : this.inputAsNumbers) {

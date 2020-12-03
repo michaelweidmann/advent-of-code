@@ -44,7 +44,7 @@ public class Utils {
 
         for (String string : stringList) {
             try {
-                Integer parseInt = Integer.parseInt(string);
+                int parseInt = Integer.parseInt(string);
                 integerList.add(parseInt);
             } catch (NumberFormatException e) {
                 return new ArrayList<>();
