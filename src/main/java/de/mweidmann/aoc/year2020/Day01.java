@@ -18,8 +18,8 @@ public class Day01 extends AbstractDay2020 {
 
     @Override
     protected int partOne() {
-        for (Integer firstNumber : this.inputAsNumbers) {
-            Optional<Integer> secondNumber = this.inputAsNumbers.stream()
+        for (Integer firstNumber : this.INPUT_AS_NUMBERS) {
+            Optional<Integer> secondNumber = this.INPUT_AS_NUMBERS.stream()
                     .filter(number -> firstNumber + number == 2020)
                     .findFirst();
 
@@ -33,9 +33,9 @@ public class Day01 extends AbstractDay2020 {
 
     @Override
     protected int partTwo() {
-        for (Integer firstNumber : this.inputAsNumbers) {
-            for (Integer secondNumber : this.inputAsNumbers) {
-                for (Integer thirdNumber : this.inputAsNumbers) {
+        for (Integer firstNumber : this.INPUT_AS_NUMBERS) {
+            for (Integer secondNumber : this.INPUT_AS_NUMBERS) {
+                for (Integer thirdNumber : this.INPUT_AS_NUMBERS) {
                     if (!firstNumber.equals(secondNumber) && !secondNumber.equals(thirdNumber) && firstNumber + secondNumber + thirdNumber == 2020) {
                         return firstNumber * secondNumber * thirdNumber;
                     }

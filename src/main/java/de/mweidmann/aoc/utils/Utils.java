@@ -53,4 +53,14 @@ public class Utils {
 
         return integerList;
     }
+
+    /**
+     * Converts the {@link AbstractDay#INPUT} (a list of strings) to a single string.
+     *
+     * @param stringList The list of strings to be merged.
+     * @return A single string containing all strings delimited by a new line.
+     */
+    public static String convertListOfStringsToString(List<String> stringList) {
+        return String.join("\n", stringList);
+    }
 }

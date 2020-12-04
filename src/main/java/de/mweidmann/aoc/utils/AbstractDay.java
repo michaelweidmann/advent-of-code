@@ -9,10 +9,11 @@ import java.util.List;
  */
 public abstract class AbstractDay {
 
-    protected final List<String> input;
-    protected final List<Integer> inputAsNumbers;
+    protected final List<String> INPUT;
+    protected final List<Integer> INPUT_AS_NUMBERS;
+    protected final String INPUT_AS_STRING;
 
-    private final int day;
+    private final int DAY;
 
     /**
      * A constructor for an abstract day in any year.
@@ -21,9 +22,10 @@ public abstract class AbstractDay {
      * @param day  The day to be represented.
      */
     public AbstractDay(int year, int day) {
-        this.day = day;
-        this.input = Utils.readFile(year, day);
-        this.inputAsNumbers = Utils.convertListToInteger(this.input);
+        this.DAY = day;
+        this.INPUT = Utils.readFile(year, day);
+        this.INPUT_AS_NUMBERS = Utils.convertListToInteger(this.INPUT);
+        this.INPUT_AS_STRING = Utils.convertListOfStringsToString(this.INPUT);
     }
 
     /**
@@ -48,7 +50,7 @@ public abstract class AbstractDay {
 
         long endTime = System.nanoTime();
 
-        System.out.println("Day %s:".formatted(day));
+        System.out.println("Day %s:".formatted(DAY));
         System.out.println("Result Part 1: " + resultPartOne);
         System.out.println("Result Part 2: " + resultPartTwo);
 

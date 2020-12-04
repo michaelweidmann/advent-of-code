@@ -4,6 +4,7 @@ import lombok.Value;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,47 +18,53 @@ public class Day02 extends AbstractDay2020 {
     /**
      * A regular expression matching the following string: (number)-(number) (character): (any string)
      */
-    private final String regex = "(\\d+)-(\\d+) ([a-z]): (.+)";
+    private final String REGEX = "(\\d+)-(\\d+) ([a-z]): (.+)";
 
     /**
-     * The pattern which compiles the regular expression defined in {@link Day02#regex}.
+     * The pattern which compiles the regular expression defined in {@link Day02#REGEX}.
      */
-    private final Pattern pattern;
+    private final Pattern PATTERN;
 
     /**
      * A list containing the input of the task in form of {@link PasswordWithPolicy} objects.
      */
-    private final List<PasswordWithPolicy> inputPasswordWithPolicies;
+    private final List<PasswordWithPolicy> INPUT_PASSWORDS_WITH_POLICIES;
 
     /**
      * Default constructor for Day02.
      */
     public Day02() {
         super(2);
-        this.pattern = Pattern.compile(regex);
-        inputPasswordWithPolicies = initializeInputPasswordWithPolicies();
+        this.PATTERN = Pattern.compile(REGEX);
+        this.INPUT_PASSWORDS_WITH_POLICIES = initializeInputPasswordWithPolicies();
     }
 
     @Override
     protected int partOne() {
-        long validPasswords = inputPasswordWithPolicies.stream()
-                .filter(PasswordWithPolicy::isValidPartOne)
-                .count();
-
-        return Math.toIntExact(validPasswords);
+        return countValidPasswords(PasswordWithPolicy::isValidPartOne);
     }
 
     @Override
     protected int partTwo() {
-        long validPasswords = inputPasswordWithPolicies.stream()
-                .filter(PasswordWithPolicy::isValidPartTwo)
+        return countValidPasswords(PasswordWithPolicy::isValidPartTwo);
+    }
+
+    /**
+     * Counts valid passwords according to their policy.
+     *
+     * @param validator The policy of password in form of a Predicate.
+     * @return The number of valid passwords.
+     */
+    private int countValidPasswords(Predicate<PasswordWithPolicy> validator) {
+        long validPasswords = INPUT_PASSWORDS_WITH_POLICIES.stream()
+                .filter(validator)
                 .count();
 
         return Math.toIntExact(validPasswords);
     }
 
     /**
-     * Associates all {@link de.mweidmann.aoc.utils.AbstractDay#input} strings (according to the input scheme)
+     * Associates all {@link de.mweidmann.aoc.utils.AbstractDay#INPUT} strings (according to the input scheme)
      * with one {@link PasswordWithPolicy} object each by analyzing and mapping the string.
      *
      * @return A list of {@link PasswordWithPolicy} objects where each object corresponds to a line in the input file.
@@ -65,16 +72,13 @@ public class Day02 extends AbstractDay2020 {
     private List<PasswordWithPolicy> initializeInputPasswordWithPolicies() {
         List<PasswordWithPolicy> list = new ArrayList<>();
 
-        input.forEach(lineOfInput -> {
-            Matcher matcher = pattern.matcher(lineOfInput);
+        INPUT.forEach(lineOfInput -> {
+            Matcher matcher = PATTERN.matcher(lineOfInput);
 
-            if (matcher.matches()) {
-                list.add(
-                        new PasswordWithPolicy(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)), matcher.group(3).charAt(0), matcher.group(4))
-                );
-            } else {
+            if (!matcher.matches()) {
                 throw new RuntimeException("Failed to match the input string with the given pattern.");
             }
+            list.add(new PasswordWithPolicy(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)), matcher.group(3).charAt(0), matcher.group(4)));
         });
 
         return list;

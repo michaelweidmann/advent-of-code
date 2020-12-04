@@ -1,7 +1,5 @@
 package de.mweidmann.aoc.year2020;
 
-import java.util.Map;
-
 /**
  * Contains the solutions to the tasks from 03.12.2020.
  *
@@ -12,14 +10,14 @@ public class Day03 extends AbstractDay2020 {
     /**
      * The width of the input grid to get to a field using modulo when crossing the right border.
      */
-    private final Integer gridWidth;
+    private final Integer GRID_WIDTH;
 
     /**
      * Default constructor for Day03.
      */
     public Day03() {
         super(3);
-        gridWidth = input.get(0).length();
+        this.GRID_WIDTH = INPUT.get(0).length();
     }
 
     @Override
@@ -45,7 +43,7 @@ public class Day03 extends AbstractDay2020 {
         int xPosition = 0;
         int treeCrashCounter = 0;
 
-        for (int yPosition = 0; yPosition < input.size(); yPosition += ySlope) {
+        for (int yPosition = 0; yPosition < INPUT.size(); yPosition += ySlope) {
             if (hasTreeOnField(xPosition, yPosition)) {
                 treeCrashCounter++;
             }
@@ -63,7 +61,7 @@ public class Day03 extends AbstractDay2020 {
      * @return true if on the field is a tree otherwise false.
      */
     private boolean hasTreeOnField(Integer xPosition, Integer yPosition) {
-        char[] arr = input.get(yPosition).toCharArray();
-        return arr[xPosition % gridWidth] == '#';
+        char[] arr = INPUT.get(yPosition).toCharArray();
+        return arr[xPosition % GRID_WIDTH] == '#';
     }
 }
