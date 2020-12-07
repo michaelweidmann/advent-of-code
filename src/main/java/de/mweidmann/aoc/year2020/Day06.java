@@ -14,7 +14,7 @@ import java.util.List;
 public class Day06 extends AbstractDay2020 {
 
     /**
-     * Default constructor for Day05.
+     * Default constructor for Day06.
      */
     public Day06() {
         super(6);

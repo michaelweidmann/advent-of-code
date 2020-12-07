@@ -18,7 +18,7 @@ public class Day04 extends AbstractDay2020 {
     /**
      * Map containing for every passport field the corresponding Regex Pattern.
      */
-    private final Map<String, Pattern> fieldToPattern = Map.of("byr", Pattern.compile("200[0-2]|19[2-9][0-9]"),
+    private final Map<String, Pattern> FIELD_TO_PATTERN = Map.of("byr", Pattern.compile("200[0-2]|19[2-9][0-9]"),
             "iyr", Pattern.compile("201[0-9]|2020"),
             "eyr", Pattern.compile("202[0-9]|2030"),
             "hgt", Pattern.compile("1([5-8][0-9]|9[0-3])cm|(59|6[0-9]|7[0-6])in"),
@@ -75,7 +75,7 @@ public class Day04 extends AbstractDay2020 {
         List<String> usedPassportFields = Arrays.stream(passportFields)
                 .map(passportField -> passportField.substring(0, 3))
                 .collect(Collectors.toList());
-        return usedPassportFields.containsAll(fieldToPattern.keySet());
+        return usedPassportFields.containsAll(FIELD_TO_PATTERN.keySet());
     }
 
     /**
@@ -100,7 +100,7 @@ public class Day04 extends AbstractDay2020 {
      * @return True if the passport field matches the pattern otherwise false.
      */
     private boolean matchesPattern(String[] passportField) {
-        Matcher matcher = fieldToPattern.get(passportField[0]).matcher(passportField[1]);
+        Matcher matcher = FIELD_TO_PATTERN.get(passportField[0]).matcher(passportField[1]);
         return matcher.matches();
     }
 }
