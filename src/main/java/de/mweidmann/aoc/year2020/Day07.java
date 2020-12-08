@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * Contains the solutions to the tasks from 06.12.2020.
+ * Contains the solutions to the tasks from 07.12.2020.
  *
  * @author mweidmann
  */
@@ -40,7 +40,7 @@ public class Day07 extends AbstractDay2020 {
     private final List<Trade> trades;
 
     /**
-     * Default constructor for Day07
+     * Default constructor for Day07.
      */
     public Day07() {
         super(7);
@@ -147,7 +147,7 @@ public class Day07 extends AbstractDay2020 {
             Matcher matcher = contentsPattern.matcher(rule);
 
             while (matcher.find()) {
-                suitcaseToNumber.put(matcher.group(2), Integer.valueOf(matcher.group(1)));
+                suitcaseToNumber.put(matcher.group(2), Integer.parseInt(matcher.group(1)));
             }
             return suitcaseToNumber;
         }
