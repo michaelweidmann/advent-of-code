@@ -21,12 +21,12 @@ public class Day03 extends AbstractDay2020 {
     }
 
     @Override
-    protected int partOne() {
+    protected Number partOne() {
         return numberOfCrashesOnPath(3, 1);
     }
 
     @Override
-    protected int partTwo() {
+    protected Number partTwo() {
         return numberOfCrashesOnPath(1, 1) * numberOfCrashesOnPath(3, 1)
                 * numberOfCrashesOnPath(5, 1) * numberOfCrashesOnPath(7, 1)
                 * numberOfCrashesOnPath(1, 2);

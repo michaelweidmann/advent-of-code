@@ -34,12 +34,12 @@ public class Day04 extends AbstractDay2020 {
     }
 
     @Override
-    protected int partOne() {
+    protected Number partOne() {
         return countValidPassports(this::isValidPartOne);
     }
 
     @Override
-    protected int partTwo() {
+    protected Number partTwo() {
         return countValidPassports(this::isValidPartTwo);
     }
 

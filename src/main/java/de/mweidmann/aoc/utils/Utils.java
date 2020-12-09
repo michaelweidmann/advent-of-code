@@ -55,6 +55,27 @@ public class Utils {
     }
 
     /**
+     * Converts a given list of strings to a list of long if possible.
+     *
+     * @param stringList A list of strings to be converted.
+     * @return A list with successfully converted long or an empty list if the conversion failed.
+     */
+    public static List<Long> convertListToLong(List<String> stringList) {
+        List<Long> longList = new ArrayList<>();
+
+        for (String string : stringList) {
+            try {
+                long parseLong = Long.parseLong(string);
+                longList.add(parseLong);
+            } catch (NumberFormatException e) {
+                return new ArrayList<>();
+            }
+        }
+
+        return longList;
+    }
+
+    /**
      * Converts the {@link AbstractDay#INPUT} (a list of strings) to a single string.
      *
      * @param stringList The list of strings to be merged.

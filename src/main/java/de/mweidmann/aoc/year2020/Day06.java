@@ -29,7 +29,7 @@ public class Day06 extends AbstractDay2020 {
      * @return The sum of yes answers of a group.
      */
     @Override
-    protected int partOne() {
+    protected Number partOne() {
         return (int) Arrays.stream(INPUT_AS_STRING.split("\n\n"))
                 .map(answers -> answers.replace("\n", ""))
                 .mapToLong(answers -> answers.chars().distinct().count())
@@ -49,7 +49,7 @@ public class Day06 extends AbstractDay2020 {
      * @return Return how many questions are answered with yes by all group members.
      */
     @Override
-    protected int partTwo() {
+    protected Number partTwo() {
         return Arrays.stream(INPUT_AS_STRING.split("\n\n"))
                 .map(answers -> answers.replace("\n", " "))
                 .mapToInt(answers -> {

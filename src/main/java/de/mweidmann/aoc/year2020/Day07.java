@@ -52,7 +52,7 @@ public class Day07 extends AbstractDay2020 {
     }
 
     @Override
-    protected int partOne() {
+    protected Number partOne() {
         return getNumberOfBagColors("shiny gold", new HashSet<>()).size() - 1;
     }
 
@@ -75,7 +75,7 @@ public class Day07 extends AbstractDay2020 {
     }
 
     @Override
-    protected int partTwo() {
+    protected Number partTwo() {
         return solve("shiny gold", 1) - 1;
     }
 

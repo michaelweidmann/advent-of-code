@@ -43,7 +43,7 @@ public class Day08 extends AbstractDay2020 {
     }
 
     @Override
-    protected int partOne() {
+    protected Number partOne() {
         return calculate().getAccumulator();
     }
 
@@ -87,7 +87,7 @@ public class Day08 extends AbstractDay2020 {
      * @return The result.
      */
     @Override
-    protected int partTwo() {
+    protected Number partTwo() {
         for (Map.Entry<Integer, Instruction> entry : this.instructions.entrySet()) {
             Instruction instruction = entry.getValue();
             CalculationResult calculationResult = null;

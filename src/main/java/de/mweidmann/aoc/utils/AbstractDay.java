@@ -10,7 +10,8 @@ import java.util.List;
 public abstract class AbstractDay {
 
     protected final List<String> INPUT;
-    protected final List<Integer> INPUT_AS_NUMBERS;
+    protected final List<Integer> INPUT_AS_INTEGER;
+    protected final List<Long> INPUT_AS_LONG;
     protected final String INPUT_AS_STRING;
 
     private final int DAY;
@@ -24,29 +25,34 @@ public abstract class AbstractDay {
     public AbstractDay(int year, int day) {
         this.DAY = day;
         this.INPUT = Utils.readFile(year, day);
-        this.INPUT_AS_NUMBERS = Utils.convertListToInteger(this.INPUT);
+        this.INPUT_AS_INTEGER = Utils.convertListToInteger(this.INPUT);
+        this.INPUT_AS_LONG = Utils.convertListToLong(this.INPUT);
         this.INPUT_AS_STRING = Utils.convertListOfStringsToString(this.INPUT);
     }
 
     /**
      * Contains the solution for the first part of the task of a day.
+     *
+     * @return The solution.
      */
-    protected abstract int partOne();
+    protected abstract Number partOne();
 
     /**
      * Contains the solution for the second part of the task of a day.
+     *
+     * @return The solution.
      */
-    protected abstract int partTwo();
+    protected abstract Number partTwo();
 
     /**
      * Runs all two parts of the day, benchmarks them and prints the results.
      */
     public void runAll() {
         long startTimePartOne = System.nanoTime();
-        int resultPartOne = partOne();
+        Number resultPartOne = partOne();
 
         long startTimePartTwo = System.nanoTime();
-        int resultPartTwo = partTwo();
+        Number resultPartTwo = partTwo();
 
         long endTime = System.nanoTime();
 
