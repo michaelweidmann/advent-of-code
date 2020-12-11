@@ -21,9 +21,9 @@ public class Day09 extends AbstractDay2020 {
     }
 
     /**
-     * Iterates over the list and 
+     * Iterates over the list and find the first that is invalid.
      *
-     * @return
+     * @return The first invalid number in this encryption.
      */
     @Override
     protected Number partOne() {
