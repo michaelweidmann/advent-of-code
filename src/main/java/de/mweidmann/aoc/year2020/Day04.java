@@ -55,14 +55,12 @@ public class Day04 extends AbstractDay2020 {
      * @param validator The rules in form of a predicate.
      * @return The number of valid passports.
      */
-    private int countValidPassports(Predicate<String[]> validator) {
-        long validPassports = Arrays.stream(INPUT_AS_STRING.split("\n\n"))
+    private long countValidPassports(Predicate<String[]> validator) {
+        return Arrays.stream(INPUT_AS_STRING.split("\n\n"))
                 .map(string -> string.replace("\n", " "))
                 .map(string -> string.split(" "))
                 .filter(validator)
                 .count();
-
-        return Math.toIntExact(validPassports);
     }
 
     /**
@@ -75,6 +73,7 @@ public class Day04 extends AbstractDay2020 {
         List<String> usedPassportFields = Arrays.stream(passportFields)
                 .map(passportField -> passportField.substring(0, 3))
                 .collect(Collectors.toList());
+
         return usedPassportFields.containsAll(FIELD_TO_PATTERN.keySet());
     }
 

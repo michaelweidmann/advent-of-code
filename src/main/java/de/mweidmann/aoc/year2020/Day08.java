@@ -64,6 +64,7 @@ public class Day08 extends AbstractDay2020 {
             Instruction instruction = this.instructions.get(currentInstruction);
 
             if (instruction == null) {
+                // Script ran until the end so the result can be returned.
                 return new CalculationResult(true, accumulator);
             }
 

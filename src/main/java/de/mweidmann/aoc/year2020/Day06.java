@@ -30,8 +30,10 @@ public class Day06 extends AbstractDay2020 {
      */
     @Override
     protected Number partOne() {
-        return (int) Arrays.stream(INPUT_AS_STRING.split("\n\n"))
+        return Arrays.stream(INPUT_AS_STRING.split("\n\n"))
+                // Get every yes answer into one line without line breaks.
                 .map(answers -> answers.replace("\n", ""))
+                // Count the distinct answers.
                 .mapToLong(answers -> answers.chars().distinct().count())
                 .sum();
     }
@@ -51,9 +53,13 @@ public class Day06 extends AbstractDay2020 {
     @Override
     protected Number partTwo() {
         return Arrays.stream(INPUT_AS_STRING.split("\n\n"))
+                // Get every yes answer into one line without line breaks.
                 .map(answers -> answers.replace("\n", " "))
+                // Get the answers to those question where everyone answered yes.
                 .mapToInt(answers -> {
+                    // This list contains from every user every answer.
                     List<String> userAnswers = Arrays.asList(answers.split(" "));
+                    // This list contains the answers to which every user answered yes.
                     List<Character> answersYesFromEveryone = new ArrayList<>(Chars.asList(userAnswers.get(0).toCharArray()));
 
                     userAnswers.stream()

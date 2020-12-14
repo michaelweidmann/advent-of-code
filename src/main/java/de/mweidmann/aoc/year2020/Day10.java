@@ -33,10 +33,18 @@ public class Day10 extends AbstractDay2020 {
     }
 
     /**
-     * TODO: document this mess.
+     * Divides the whole sorted input into sequences.
+     * For each size of a sequence, there are a certain number of ways the Jolt connectors can be arranged.
+     * If the sequence is 3 long --> 2x1 Jolt or 1x2 Jolt connector is possible needed.
+     * If the sequence is 4 long --> 4x1 Jolt or 2x2 Jolt connector or 1x3 and 1x1 connector ist needed.
+     * And so on.
+     * Afterwards the possibilities of every sequence are multiplicated with each other to get every possible arrangement.
+     *
+     * @return The number of possible arrangements of Jolt connectors.
      */
     @Override
     protected Number partTwo() {
+        // Maybe the first jolt connector is part of a sequence.
         this.INPUT_AS_INTEGER.add(0);
         this.INPUT_AS_INTEGER.sort(Integer::compareTo);
 
@@ -44,14 +52,17 @@ public class Day10 extends AbstractDay2020 {
         int sizeOfSequence = 1;
 
         for (int i = 0; i < this.INPUT_AS_INTEGER.size() - 2; i++) {
+            // If the difference of two elements is 1, then the size of sequence is increased.
             if (this.INPUT_AS_INTEGER.get(i + 1) - this.INPUT_AS_INTEGER.get(i) == 1) {
                 sizeOfSequence++;
+            // Otherwise the sizeOfSequence is resetted and the count for the sequence in the specific length is increased.
             } else {
                 amountOfSequences[sizeOfSequence]++;
                 sizeOfSequence = 1;
             }
         }
 
+        // Add the last sequence to the calculation.
         amountOfSequences[sizeOfSequence]++;
 
         long answer = 1;

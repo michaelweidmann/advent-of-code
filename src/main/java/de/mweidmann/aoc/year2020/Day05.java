@@ -26,7 +26,7 @@ public class Day05 extends AbstractDay2020 {
                 .map(this::calculateSeatId)
                 .max(Comparator.naturalOrder());
 
-        return opt.orElse(-1);
+        return opt.orElseThrow();
     }
 
     @Override
@@ -36,6 +36,7 @@ public class Day05 extends AbstractDay2020 {
                 .map(this::calculateSeatId)
                 .collect(Collectors.toList());
 
+        // Find the seat id which does not exist.
         Optional<Integer> opt = seatIds.stream()
                 .filter(seatId -> !seatIds.contains(seatId + 1))
                 .filter(seatId -> seatIds.contains(seatId + 2))

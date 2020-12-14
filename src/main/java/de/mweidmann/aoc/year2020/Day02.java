@@ -55,12 +55,10 @@ public class Day02 extends AbstractDay2020 {
      * @param validator The policy of password in form of a Predicate.
      * @return The number of valid passwords.
      */
-    private int countValidPasswords(Predicate<PasswordWithPolicy> validator) {
-        long validPasswords = INPUT_PASSWORDS_WITH_POLICIES.stream()
+    private long countValidPasswords(Predicate<PasswordWithPolicy> validator) {
+        return INPUT_PASSWORDS_WITH_POLICIES.stream()
                 .filter(validator)
                 .count();
-
-        return Math.toIntExact(validPasswords);
     }
 
     /**
@@ -72,6 +70,7 @@ public class Day02 extends AbstractDay2020 {
     private List<PasswordWithPolicy> initializeInputPasswordWithPolicies() {
         List<PasswordWithPolicy> list = new ArrayList<>();
 
+        // For every line in the input create a password policy.
         INPUT.forEach(lineOfInput -> {
             Matcher matcher = PATTERN.matcher(lineOfInput);
 
@@ -119,7 +118,7 @@ public class Day02 extends AbstractDay2020 {
          *
          * @return true if the password is valid, otherwise false.
          */
-        protected Boolean isValidPartOne() {
+        protected boolean isValidPartOne() {
             int frequencyOfCharacter = password.length() - password.replaceAll(character.toString(), "").length();
             return frequencyOfCharacter >= min && frequencyOfCharacter <= max;
         }
@@ -130,7 +129,7 @@ public class Day02 extends AbstractDay2020 {
          *
          * @return true if the password is valid, otherwise false.
          */
-        protected Boolean isValidPartTwo() {
+        protected boolean isValidPartTwo() {
             return (password.charAt(min - 1) == character && password.charAt(max - 1) != character)
                     || (password.charAt(min - 1) != character && password.charAt(max - 1) == character);
         }

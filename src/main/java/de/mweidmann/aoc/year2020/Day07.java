@@ -57,19 +57,22 @@ public class Day07 extends AbstractDay2020 {
     }
 
     /**
-     * Recursive method which returns to an inputColor how many bag colors can eventually contain at least one bag in the inputColor?
+     * Recursive method which returns to an inputColor how many bag colors can eventually contain at least one bag in the inputColor.
      *
      * @param inputColor    The color of the bag in the input.
      * @param visitedColors All already visited colors.
-     * @return The number of bag color which can eventually contain at least one bag in the inputColor.
+     * @return The number of bag colors which can eventually contain at least one bag in the inputColor.
      */
     private Set<String> getNumberOfBagColors(String inputColor, Set<String> visitedColors) {
         visitedColors.add(inputColor);
+
         // Gets all trades where the inputColor is in the output.
         List<Trade> possibleTrades = trades.stream()
                 .filter(trade -> trade.getOutput().keySet().stream()
                         .anyMatch(output -> output.equals(inputColor)))
                 .collect(Collectors.toList());
+
+        // For every possible trade (to get the current color) calculate the number of bag colors which can contain the input color.
         possibleTrades.forEach(possibleTrade -> getNumberOfBagColors(possibleTrade.getInput(), visitedColors));
         return visitedColors;
     }
@@ -88,10 +91,14 @@ public class Day07 extends AbstractDay2020 {
      */
     private int solve(String inputBag, int numberOfBags) {
         return this.trades.stream()
+                // Get all trades which can be made from the input bag.
                 .filter(trade -> trade.getInput().equals(inputBag))
+                // Get the output of the trades.
                 .map(Trade::getOutput)
                 .map(Map::entrySet)
                 .flatMap(Collection::stream)
+                // For every trade solve it recursively with the current number of bags.
+                // Take the return value of the recursive function and multiplicate it with how many bags are possible to carry in the current bag.
                 .mapToInt(entry -> solve(entry.getKey(), numberOfBags) * entry.getValue())
                 .sum() + numberOfBags;
     }

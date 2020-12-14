@@ -31,10 +31,7 @@ public class Day09 extends AbstractDay2020 {
                 .filter(currentId -> !isValidNumber(currentId))
                 .findFirst();
 
-        if (firstInvalidId.isEmpty()) {
-            return 0;
-        }
-        return this.INPUT_AS_LONG.get(firstInvalidId.getAsInt());
+        return this.INPUT_AS_LONG.get(firstInvalidId.orElseThrow());
     }
 
     /**
@@ -84,10 +81,6 @@ public class Day09 extends AbstractDay2020 {
         OptionalLong lowestNumber = numbers.stream().mapToLong(e -> e).min();
         OptionalLong highestNumber = numbers.stream().mapToLong(e -> e).max();
 
-        if (lowestNumber.isEmpty()) {
-            return 0;
-        }
-
-        return lowestNumber.getAsLong() + highestNumber.getAsLong();
+        return lowestNumber.orElseThrow() + highestNumber.orElseThrow();
     }
 }
