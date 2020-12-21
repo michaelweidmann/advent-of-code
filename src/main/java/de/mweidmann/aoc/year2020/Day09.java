@@ -26,7 +26,7 @@ public class Day09 extends AbstractDay2020 {
      * @return The first invalid number in this encryption.
      */
     @Override
-    protected Number partOne() {
+    protected Object partOne() {
         OptionalInt firstInvalidId = IntStream.range(25, this.INPUT_AS_LONG.size())
                 .filter(currentId -> !isValidNumber(currentId))
                 .findFirst();
@@ -52,9 +52,9 @@ public class Day09 extends AbstractDay2020 {
     }
 
     @Override
-    protected Number partTwo() {
+    protected Object partTwo() {
         final long invalidNumber = 1212510616L;
-        final Set<Long> numbers = new HashSet<>();
+        final Set<Long> numberStreak = new HashSet<>();
 
         boolean found = false;
         int currentId = 0;
@@ -64,12 +64,12 @@ public class Day09 extends AbstractDay2020 {
 
             for (int i = currentId; i < this.INPUT_AS_LONG.size(); i++) {
                 long currentNumber = this.INPUT_AS_LONG.get(i);
-                numbers.add(currentNumber);
+                numberStreak.add(currentNumber);
                 sum += currentNumber;
 
                 if (sum > invalidNumber) {
                     currentId++;
-                    numbers.clear();
+                    numberStreak.clear();
                     break;
                 } else if (sum == invalidNumber) {
                     found = true;
@@ -78,8 +78,8 @@ public class Day09 extends AbstractDay2020 {
             }
         }
 
-        OptionalLong lowestNumber = numbers.stream().mapToLong(e -> e).min();
-        OptionalLong highestNumber = numbers.stream().mapToLong(e -> e).max();
+        OptionalLong lowestNumber = numberStreak.stream().mapToLong(e -> e).min();
+        OptionalLong highestNumber = numberStreak.stream().mapToLong(e -> e).max();
 
         return lowestNumber.orElseThrow() + highestNumber.orElseThrow();
     }

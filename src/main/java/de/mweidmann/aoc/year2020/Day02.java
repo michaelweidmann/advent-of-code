@@ -40,12 +40,12 @@ public class Day02 extends AbstractDay2020 {
     }
 
     @Override
-    protected Number partOne() {
+    protected Object partOne() {
         return countValidPasswords(PasswordWithPolicy::isValidPartOne);
     }
 
     @Override
-    protected Number partTwo() {
+    protected Object partTwo() {
         return countValidPasswords(PasswordWithPolicy::isValidPartTwo);
     }
 

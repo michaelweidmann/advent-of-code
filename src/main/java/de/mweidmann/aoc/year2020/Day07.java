@@ -15,19 +15,9 @@ import java.util.stream.Collectors;
 public class Day07 extends AbstractDay2020 {
 
     /**
-     * A regular expression matching the suitcase to which the rule applies.
-     */
-    private final String REGEX_SUITCASE = "([a-z]+ [a-z]+) bags contain";
-
-    /**
      * The corresponding pattern to the suitcase regex.
      */
     private final Pattern SUITCASE_PATTERN;
-
-    /**
-     * A regular expression matching the contents of a suitcase.
-     */
-    private final String REGEX_CONTENTS = "([\\d]+) ([a-z]+ [a-z]+) bags?";
 
     /**
      * The corresponding pattern to the contents regex.
@@ -44,15 +34,15 @@ public class Day07 extends AbstractDay2020 {
      */
     public Day07() {
         super(7);
-        this.SUITCASE_PATTERN = Pattern.compile(REGEX_SUITCASE);
-        this.CONTENTS_PATTERN = Pattern.compile(REGEX_CONTENTS);
+        this.SUITCASE_PATTERN = Pattern.compile("([a-z]+ [a-z]+) bags contain");
+        this.CONTENTS_PATTERN = Pattern.compile("([\\d]+) ([a-z]+ [a-z]+) bags?");
         this.trades = INPUT.stream()
                 .map(fileLine -> new Trade(fileLine, SUITCASE_PATTERN, CONTENTS_PATTERN))
                 .collect(Collectors.toList());
     }
 
     @Override
-    protected Number partOne() {
+    protected Object partOne() {
         return getNumberOfBagColors("shiny gold", new HashSet<>()).size() - 1;
     }
 
@@ -78,7 +68,7 @@ public class Day07 extends AbstractDay2020 {
     }
 
     @Override
-    protected Number partTwo() {
+    protected Object partTwo() {
         return solve("shiny gold", 1) - 1;
     }
 
@@ -112,13 +102,13 @@ public class Day07 extends AbstractDay2020 {
          * The outer bag color.
          */
         @Getter
-        private String input;
+        private final String input;
 
         /**
          * A map containing the bag color and how many times it fits into the {@link Trade#input}
          */
         @Getter
-        private Map<String, Integer> output;
+        private final Map<String, Integer> output;
 
         private Trade(String rule, Pattern suitcasePattern, Pattern contentsPattern) {
             this.input = getSuitcase(rule, suitcasePattern);

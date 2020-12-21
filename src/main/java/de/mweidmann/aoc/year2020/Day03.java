@@ -21,12 +21,12 @@ public class Day03 extends AbstractDay2020 {
     }
 
     @Override
-    protected Number partOne() {
+    protected Object partOne() {
         return numberOfCrashesOnPath(3, 1);
     }
 
     @Override
-    protected Number partTwo() {
+    protected Object partTwo() {
         return numberOfCrashesOnPath(1, 1) * numberOfCrashesOnPath(3, 1)
                 * numberOfCrashesOnPath(5, 1) * numberOfCrashesOnPath(7, 1)
                 * numberOfCrashesOnPath(1, 2);
@@ -37,7 +37,7 @@ public class Day03 extends AbstractDay2020 {
      *
      * @param xSlope The slope in the right direction for every step.
      * @param ySlope The slope in the bottom direction for every step.
-     * @return The number of crashes with a tree
+     * @return The number of crashes with a tree.
      */
     private int numberOfCrashesOnPath(Integer xSlope, Integer ySlope) {
         int xPosition = 0;

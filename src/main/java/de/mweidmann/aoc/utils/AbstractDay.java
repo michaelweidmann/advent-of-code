@@ -35,24 +35,24 @@ public abstract class AbstractDay {
      *
      * @return The solution.
      */
-    protected abstract Number partOne();
+    protected abstract Object partOne();
 
     /**
      * Contains the solution for the second part of the task of a day.
      *
      * @return The solution.
      */
-    protected abstract Number partTwo();
+    protected abstract Object partTwo();
 
     /**
      * Runs all two parts of the day, benchmarks them and prints the results.
      */
     public void runAll() {
         long startTimePartOne = System.nanoTime();
-        Number resultPartOne = partOne();
+        Object resultPartOne = partOne();
 
         long startTimePartTwo = System.nanoTime();
-        Number resultPartTwo = partTwo();
+        Object resultPartTwo = partTwo();
 
         long endTime = System.nanoTime();
 

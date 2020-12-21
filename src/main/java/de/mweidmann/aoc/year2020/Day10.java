@@ -15,7 +15,7 @@ public class Day10 extends AbstractDay2020 {
     }
 
     @Override
-    protected Number partOne() {
+    protected Object partOne() {
         int numberOfOneJoltDiff = 0;
         int numberOfThreeJoltDiff = 0;
 
@@ -35,15 +35,15 @@ public class Day10 extends AbstractDay2020 {
     /**
      * Divides the whole sorted input into sequences.
      * For each size of a sequence, there are a certain number of ways the Jolt connectors can be arranged.
-     * If the sequence is 3 long --> 2x1 Jolt or 1x2 Jolt connector is possible needed.
-     * If the sequence is 4 long --> 4x1 Jolt or 2x2 Jolt connector or 1x3 and 1x1 connector ist needed.
+     * If the sequence is 3 long --> 2x1 Jolt or 1x2 Jolt connector is needed.
+     * If the sequence is 4 long --> 3x1 Jolt or 1x2 and 1x1 Jolt or 1x1 and 1x2 or 1x3 Jolt connector is needed.
      * And so on.
      * Afterwards the possibilities of every sequence are multiplicated with each other to get every possible arrangement.
      *
      * @return The number of possible arrangements of Jolt connectors.
      */
     @Override
-    protected Number partTwo() {
+    protected Object partTwo() {
         // Maybe the first jolt connector is part of a sequence.
         this.INPUT_AS_INTEGER.add(0);
         this.INPUT_AS_INTEGER.sort(Integer::compareTo);

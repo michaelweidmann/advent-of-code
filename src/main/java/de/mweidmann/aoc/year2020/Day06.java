@@ -29,7 +29,7 @@ public class Day06 extends AbstractDay2020 {
      * @return The sum of yes answers of a group.
      */
     @Override
-    protected Number partOne() {
+    protected Object partOne() {
         return Arrays.stream(INPUT_AS_STRING.split("\n\n"))
                 // Get every yes answer into one line without line breaks.
                 .map(answers -> answers.replace("\n", ""))
@@ -51,7 +51,7 @@ public class Day06 extends AbstractDay2020 {
      * @return Return how many questions are answered with yes by all group members.
      */
     @Override
-    protected Number partTwo() {
+    protected Object partTwo() {
         return Arrays.stream(INPUT_AS_STRING.split("\n\n"))
                 // Get every yes answer into one line without line breaks.
                 .map(answers -> answers.replace("\n", " "))

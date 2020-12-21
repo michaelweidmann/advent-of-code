@@ -23,7 +23,7 @@ public class Utils {
      * @return A list of strings. Each string describes one line of the input file.
      */
     public static List<String> readFile(int year, int day) {
-        File file = new File("src/main/resources/%s/%02d-day/input".formatted(year, day));
+        File file = new File("src/main/resources/%s/day-%02d/input".formatted(year, day));
 
         try {
             return FileUtils.readLines(file, Charset.defaultCharset());

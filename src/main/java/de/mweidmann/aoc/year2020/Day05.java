@@ -20,7 +20,7 @@ public class Day05 extends AbstractDay2020 {
     }
 
     @Override
-    protected Number partOne() {
+    protected Object partOne() {
         Optional<Integer> opt = INPUT.stream()
                 .map(String::toCharArray)
                 .map(this::calculateSeatId)
@@ -30,7 +30,7 @@ public class Day05 extends AbstractDay2020 {
     }
 
     @Override
-    protected Number partTwo() {
+    protected Object partTwo() {
         List<Integer> seatIds = INPUT.stream()
                 .map(String::toCharArray)
                 .map(this::calculateSeatId)
