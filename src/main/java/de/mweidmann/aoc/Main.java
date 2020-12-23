@@ -16,7 +16,7 @@ public class Main {
      * @param args Arguments passed to the program.
      */
     public static void main(String[] args) {
-        AbstractDay day = new Day21();
+        AbstractDay day = new Day22();
 
         day.runAll();
     }
