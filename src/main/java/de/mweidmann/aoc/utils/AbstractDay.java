@@ -22,7 +22,7 @@ public abstract class AbstractDay {
      * @param year The year to be represented.
      * @param day  The day to be represented.
      */
-    public AbstractDay(int year, int day) {
+    protected AbstractDay(int year, int day) {
         this.DAY = day;
         this.INPUT = Utils.readFile(year, day);
         this.INPUT_AS_INTEGER = Utils.convertListToInteger(this.INPUT);
@@ -56,7 +56,7 @@ public abstract class AbstractDay {
 
         long endTime = System.nanoTime();
 
-        System.out.println("Day %s:".formatted(DAY));
+        System.out.println("Day " + DAY + ":");
         System.out.println("Result Part 1: " + resultPartOne);
         System.out.println("Result Part 2: " + resultPartTwo);
 

@@ -15,11 +15,14 @@ import java.util.List;
  */
 public class Utils {
 
+    private Utils() {
+    }
+
     /**
      * Reads the input file into a list of strings.
      *
      * @param year The year of the current task to get the right resource.
-     * @param day The day of the current task to get the right resource.
+     * @param day  The day of the current task to get the right resource.
      * @return A list of strings. Each string describes one line of the input file.
      */
     public static List<String> readFile(int year, int day) {
