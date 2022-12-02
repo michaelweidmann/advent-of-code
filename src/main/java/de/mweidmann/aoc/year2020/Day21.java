@@ -105,11 +105,11 @@ public class Day21 extends AbstractDay2020 {
             List<String> possibleAllergensForIngredient = new ArrayList<>(this.allergens);
 
             this.receipts.stream()
-                .filter(receipt -> !receipt.getIngredients().contains(ingredient))
-                .map(Receipt::getAllergens)
-                .forEach(possibleAllergensForIngredient::removeAll);
+                    .filter(receipt -> !receipt.getIngredients().contains(ingredient))
+                    .map(Receipt::getAllergens)
+                    .forEach(possibleAllergensForIngredient::removeAll);
 
-            if (!possibleAllergensForIngredient.isEmpty()){
+            if (!possibleAllergensForIngredient.isEmpty()) {
                 possibleCombinations.put(ingredient, possibleAllergensForIngredient);
             }
         }

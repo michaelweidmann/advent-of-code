@@ -75,7 +75,7 @@ public class Day07 extends AbstractDay2020 {
     /**
      * Recursive method which calculates how many bags a bag can maximum contain.
      *
-     * @param inputBag The bag to calculate the maximum amount of bags for.
+     * @param inputBag     The bag to calculate the maximum amount of bags for.
      * @param numberOfBags The current number of bags.
      * @return How many bags the inputBag can contain.
      */
@@ -118,7 +118,7 @@ public class Day07 extends AbstractDay2020 {
         /**
          * Gets with a regular expression the input color of the trade.
          *
-         * @param rule The complete rule.
+         * @param rule            The complete rule.
          * @param suitcasePattern The compiled regex pattern.
          * @return The input color.
          */
@@ -135,7 +135,7 @@ public class Day07 extends AbstractDay2020 {
         /**
          * Gets with a regular expression all trades that can be done with the color.
          *
-         * @param rule The complete rule.
+         * @param rule            The complete rule.
          * @param contentsPattern The compiled regex pattern.
          * @return A map containing all possible trades of the input bag color.0
          */

@@ -1,9 +1,7 @@
 package de.mweidmann.aoc.year2022;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.function.Function;
 
 /**
  * Contains the solutions to the tasks from 01.12.2022.

@@ -3,7 +3,10 @@ package de.mweidmann.aoc.year2020;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Contains the solutions to the tasks from 08.12.2020.
@@ -58,7 +61,7 @@ public class Day08 extends AbstractDay2020 {
         int currentInstruction = 0;
         int accumulator = 0;
 
-        while(!alreadyVisited.contains(currentInstruction)) {
+        while (!alreadyVisited.contains(currentInstruction)) {
             alreadyVisited.add(currentInstruction);
 
             Instruction instruction = this.instructions.get(currentInstruction);
@@ -111,7 +114,7 @@ public class Day08 extends AbstractDay2020 {
      * Swaps the old instruction with the new instruction and calculate the script.
      * If the script was not successful then the change is taken back.
      *
-     * @param instruction The instruction which should be swapped.
+     * @param instruction    The instruction which should be swapped.
      * @param oldInstruction The old instruction.
      * @param newInstruction The new instruction.
      * @return The calculation result from the script.

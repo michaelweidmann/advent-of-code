@@ -46,7 +46,7 @@ public class Day22 extends AbstractDay2020 {
         LinkedList<Integer> stackPlayer1 = new LinkedList<>(this.stackPlayer1);
         LinkedList<Integer> stackPlayer2 = new LinkedList<>(this.stackPlayer2);
 
-        while(!stackPlayer1.isEmpty() && !stackPlayer2.isEmpty()) {
+        while (!stackPlayer1.isEmpty() && !stackPlayer2.isEmpty()) {
             int cardPlayer1 = stackPlayer1.removeFirst();
             int cardPlayer2 = stackPlayer2.removeFirst();
 
@@ -62,8 +62,8 @@ public class Day22 extends AbstractDay2020 {
      *
      * @param stackPlayer1 The card stack of player 1.
      * @param stackPlayer2 The card stack of player 2.
-     * @param cardPlayer1 The top card of player 1.
-     * @param cardPlayer2 The top card of player 2.
+     * @param cardPlayer1  The top card of player 1.
+     * @param cardPlayer2  The top card of player 2.
      */
     private void processRound(LinkedList<Integer> stackPlayer1, LinkedList<Integer> stackPlayer2, int cardPlayer1, int cardPlayer2) {
         if (cardPlayer1 > cardPlayer2) {
@@ -81,9 +81,9 @@ public class Day22 extends AbstractDay2020 {
      *
      * @param stackPlayer1 The card stack of player 1.
      * @param stackPlayer2 The card stack of player 2.
-     * @param cardPlayer1 The top card of player 1.
-     * @param cardPlayer2 The top card of player 2.
-     * @param winner The winner of this round.
+     * @param cardPlayer1  The top card of player 1.
+     * @param cardPlayer2  The top card of player 2.
+     * @param winner       The winner of this round.
      */
     private void processRound(LinkedList<Integer> stackPlayer1, LinkedList<Integer> stackPlayer2, int cardPlayer1, int cardPlayer2, Winner winner) {
         if (winner == Winner.PLAYER_1) {
@@ -125,7 +125,7 @@ public class Day22 extends AbstractDay2020 {
     private Winner recurseCombat(LinkedList<Integer> stackPlayer1, LinkedList<Integer> stackPlayer2) {
         Set<List<Integer>> previousConstellations = new HashSet<>();
 
-        while(!stackPlayer1.isEmpty() && !stackPlayer2.isEmpty()) {
+        while (!stackPlayer1.isEmpty() && !stackPlayer2.isEmpty()) {
             if (!previousConstellations.add(new ArrayList<>(stackPlayer1))) {
                 return Winner.PLAYER_1;
             }
