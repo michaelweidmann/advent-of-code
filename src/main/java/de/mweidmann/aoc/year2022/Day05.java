@@ -22,7 +22,7 @@ public class Day05 extends AbstractDay2022 {
 
     @Override
     protected Object partOne() {
-        // split the supply stack from the instructions
+        // split the starting supply stack from the instructions
         var split = this.INPUT_AS_STRING.split("\n\n");
 
         var supplyStack = parseSupplyStack(split[0]);
@@ -34,7 +34,7 @@ public class Day05 extends AbstractDay2022 {
 
     @Override
     protected Object partTwo() {
-        // split the supply stack from the instructions
+        // split the starting supply stack from the instructions
         var split = this.INPUT_AS_STRING.split("\n\n");
 
         var supplyStack = parseSupplyStack(split[0]);
@@ -73,7 +73,7 @@ public class Day05 extends AbstractDay2022 {
     }
 
     private List<RearrangementProcedureStep> parseRearrangementProcedureSteps(String rearrangementProcedureSteps) {
-        // split the instructions (which are in separate lines) and parse them into an object
+        // split the instructions (which are in separate lines) into a list and parse every one of them into an object
         return Arrays.stream(rearrangementProcedureSteps.split("\n"))
                 .map(RearrangementProcedureStep::new)
                 .toList();
@@ -133,9 +133,9 @@ public class Day05 extends AbstractDay2022 {
 
         private void applyStepPart1(SupplyStack supplyStack) {
             for (int i = 0; i < amount; i++) {
-                // remove one here to get the correct index
+                // remove one from sourceStackNumber to get the correct index
                 var element = supplyStack.removeElement(sourceStackNumber - 1);
-                // remove one here to get the correct indexs
+                // remove one from destinationStackNumber to get the correct indexes
                 supplyStack.add(destinationStackNumber - 1, element);
             }
         }
@@ -143,10 +143,10 @@ public class Day05 extends AbstractDay2022 {
         private void applyStepPart2(SupplyStack supplyStack) {
             var list = new LinkedList<String>();
             for (int i = 0; i < amount; i++) {
-                // remove one here to get the correct index
+                // remove one from sourceStackNumber to get the correct index
                 list.addFirst(supplyStack.removeElement(sourceStackNumber - 1));
             }
-            // remove one here to get the correct index
+            // remove one from destinationStackNumber to get the correct index
             supplyStack.addAll(destinationStackNumber - 1, list);
         }
     }
