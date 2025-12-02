@@ -2,12 +2,14 @@ package solutions
 
 import (
 	"advent-of-code/internal/utils"
+	"bufio"
 	"fmt"
+	"os"
 	"time"
 )
 
 type Solution interface {
-	Parse(fileName string) error
+	ParseLine(line string) error
 	SolvePart1() string
 	SolvePart2() string
 }
@@ -25,7 +27,7 @@ func Run(solution Solution, fileName string) *RunResult {
 
 	// Parsing
 	parseStart := time.Now()
-	err := solution.Parse(fileName)
+	err := parse(solution, fileName)
 	if err != nil {
 		utils.HandleErrorFatally(fmt.Errorf("parse error: %w", err))
 	}
@@ -44,4 +46,29 @@ func Run(solution Solution, fileName string) *RunResult {
 	result.Part2Time = time.Since(part2Start)
 
 	return result
+}
+
+func parse(solution Solution, fileName string) error {
+	file, err := os.Open(fileName)
+	if err != nil {
+		return err
+	}
+	defer utils.CloseFile(file)
+
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		line := scanner.Text()
+
+		err := solution.ParseLine(line)
+		if err != nil {
+			return err
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		return err
+	}
+
+	return nil
 }
