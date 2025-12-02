@@ -7,10 +7,10 @@ import (
 
 func GetInputFileName(year int, day int, example bool) string {
 	if example {
-		return fmt.Sprintf("resources/%d/day%02d-example.txt", year, day)
+		return fmt.Sprintf("resources/%d/%02d/example-input.txt", year, day)
 	}
 
-	return fmt.Sprintf("resources/%d/day%02d.txt", year, day)
+	return fmt.Sprintf("resources/%d/%02d/input.txt", year, day)
 }
 
 func CloseFile(file *os.File) {
