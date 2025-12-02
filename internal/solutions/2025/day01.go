@@ -11,18 +11,11 @@ func init() {
 }
 
 func (day *Day01) SolvePart1() string {
-	dialValue := 50
 	counter := 0
+	dialValue := 50
 
 	for _, instruction := range day.InstructionSet {
-		direction := instruction.Direction
-		amount := instruction.Amount
-
-		if direction == LEFT {
-			dialValue -= amount
-		} else if direction == RIGHT {
-			dialValue += amount
-		}
+		executeInstruction(instruction, &dialValue)
 
 		dialValue = utils.Modulo(dialValue, 100)
 
@@ -40,14 +33,7 @@ func (day *Day01) SolvePart2() string {
 	isPreviousDialValueZero := false
 
 	for _, instruction := range day.InstructionSet {
-		direction := instruction.Direction
-		amount := instruction.Amount
-
-		if direction == LEFT {
-			dialValue -= amount
-		} else if direction == RIGHT {
-			dialValue += amount
-		}
+		executeInstruction(instruction, &dialValue)
 
 		if dialValue < 0 {
 			counter += utils.Abs(dialValue) / 100
@@ -76,4 +62,15 @@ func (day *Day01) SolvePart2() string {
 	}
 
 	return strconv.Itoa(counter)
+}
+
+func executeInstruction(instruction InstructionSet, dialValue *int) {
+	direction := instruction.Direction
+	amount := instruction.Amount
+
+	if direction == LEFT {
+		*dialValue -= amount
+	} else if direction == RIGHT {
+		*dialValue += amount
+	}
 }
