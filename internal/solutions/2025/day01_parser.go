@@ -47,8 +47,5 @@ func parseDirection(direction string) (Direction, error) {
 }
 
 func appendInstructionSet(day *Day01, direction Direction, amount int) {
-	day.InstructionSet = append(day.InstructionSet, InstructionSet{
-		Direction: direction,
-		Amount:    amount,
-	})
+	day.InstructionSet = append(day.InstructionSet, InstructionSet{direction, amount})
 }
