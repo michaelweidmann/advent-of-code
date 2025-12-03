@@ -44,11 +44,7 @@ func calculateLargestJoltageValue(batteryBank string, batteriesToTurnOn int) int
 		batterySearchFrameFrom = batteryJoltageIndex + 1
 	}
 
-	resultJoltage, err := utils.ParseInt64(string(resultJoltageValues))
-	if err != nil {
-		utils.HandleErrorFatally(err)
-	}
-	return resultJoltage
+	return utils.ParseInt64WithoutError(string(resultJoltageValues))
 }
 
 func getBiggestBatteryJoltageInSearchFrame(batteryJoltages []rune, from int, to int) (rune, int) {

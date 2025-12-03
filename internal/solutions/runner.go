@@ -27,7 +27,7 @@ func Run(solution Solution, fileName string) *RunResult {
 
 	// Parsing
 	parseStart := time.Now()
-	err := parse(solution, fileName)
+	err := openFileAndDelegateParsing(solution, fileName)
 	if err != nil {
 		utils.HandleErrorFatally(fmt.Errorf("parse error: %w", err))
 	}
@@ -48,7 +48,7 @@ func Run(solution Solution, fileName string) *RunResult {
 	return result
 }
 
-func parse(solution Solution, fileName string) error {
+func openFileAndDelegateParsing(solution Solution, fileName string) error {
 	file, err := os.Open(fileName)
 	if err != nil {
 		return err

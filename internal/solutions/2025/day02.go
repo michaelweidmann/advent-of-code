@@ -6,61 +6,83 @@ import (
 	"strings"
 )
 
+type IsIdInvalidFunc func(idToCheck string) bool
+
 func init() {
 	solutions.RegisterDay(2025, 2, &Day2{})
 }
 
 func (day *Day2) SolvePart1() string {
-	var counter int64 = 0
+	isIdInvalid := func(idToCheck string) bool {
+		idLength := len(idToCheck)
 
-	for _, idRange := range day.idRanges {
-		for id := idRange.firstId; id <= idRange.lastId; id++ {
-			idAsString := utils.Int64ToString(id)
-			idLength := len(idAsString)
-
-			if idLength%2 != 0 {
-				continue
-			}
-
-			delimiterIndex := idLength / 2
-			firstPart := idAsString[:delimiterIndex]
-			secondPart := idAsString[delimiterIndex:]
-
-			if firstPart == secondPart {
-				counter += id
-			}
+		if idLength%2 != 0 {
+			return false
 		}
+
+		sequenceLength := idLength / 2
+		firstPart := idToCheck[:sequenceLength]
+		secondPart := idToCheck[sequenceLength:]
+
+		if firstPart == secondPart {
+			return true
+		}
+
+		return false
 	}
-	return utils.Int64ToString(counter)
+
+	return calculateSumOfAllInvalidIds(day.idRanges, isIdInvalid)
 }
 
 func (day *Day2) SolvePart2() string {
-	var counter int64 = 0
+	isIdInvalid := func(idToCheck string) bool {
+		idLength := len(idToCheck)
 
-	for _, idRange := range day.idRanges {
-		for id := idRange.firstId; id <= idRange.lastId; id++ {
-			idAsString := utils.Int64ToString(id)
-			idLength := len(idAsString)
+		if idLength <= 1 {
+			return false
+		}
 
-			if idLength <= 1 {
+		for sequenceLengthZeroIndexed := range idLength / 2 {
+			sequenceLength := sequenceLengthZeroIndexed + 1
+			if idLength%sequenceLength != 0 {
 				continue
 			}
 
-			for delimiterIndex := range idLength / 2 {
-				delimiter := delimiterIndex + 1
-				if idLength%delimiter != 0 {
-					continue
-				}
+			sequenceToCheck := idToCheck[:sequenceLength]
+			fullSequence := strings.Repeat(sequenceToCheck, idLength/sequenceLength)
 
-				sequenceToCheck := idAsString[:delimiter]
-				repeat := strings.Repeat(sequenceToCheck, idLength/delimiter)
-
-				if repeat == idAsString {
-					counter += id
-					break
-				}
+			if fullSequence == idToCheck {
+				return true
 			}
 		}
+
+		return false
 	}
-	return utils.Int64ToString(counter)
+
+	return calculateSumOfAllInvalidIds(day.idRanges, isIdInvalid)
+}
+
+func calculateSumOfAllInvalidIds(idRanges []IdRange, isIdInvalid IsIdInvalidFunc) string {
+	var sumOfAllInvalidIds int64 = 0
+
+	for _, idRange := range idRanges {
+		sumOfInvalidIdsInIdRange := getSumOfInvalidIdsInIdRange(idRange, isIdInvalid)
+		sumOfAllInvalidIds += sumOfInvalidIdsInIdRange
+	}
+
+	return utils.Int64ToString(sumOfAllInvalidIds)
+}
+
+func getSumOfInvalidIdsInIdRange(idRange IdRange, isIdInvalid IsIdInvalidFunc) int64 {
+	var sum int64 = 0
+
+	for id := idRange.firstId; id <= idRange.lastId; id++ {
+		idAsString := utils.Int64ToString(id)
+
+		if isIdInvalid(idAsString) {
+			sum += id
+		}
+	}
+
+	return sum
 }
