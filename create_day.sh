@@ -67,7 +67,7 @@ package _$YEAR
 type Day$DAY struct {
 }
 
-func (day *Day$DAY) ParseLine(line string) error {
+func (day *Day$DAY) ParseLine(line string, lineNumber int) error {
 	return nil
 }
 EOF

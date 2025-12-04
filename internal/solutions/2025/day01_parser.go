@@ -21,7 +21,7 @@ type Day01 struct {
 	InstructionSet []InstructionSet
 }
 
-func (day *Day01) ParseLine(line string) error {
+func (day *Day01) ParseLine(line string, _ int) error {
 	direction, err := parseDirection(line[:1])
 	if err != nil {
 		return err

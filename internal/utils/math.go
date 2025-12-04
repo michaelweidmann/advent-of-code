@@ -18,3 +18,19 @@ func Modulo(dividend, divisor int) int {
 	}
 	return dividend
 }
+
+func Max(number1, number2 int) int {
+	if number1 > number2 {
+		return number1
+	}
+
+	return number2
+}
+
+func Min(number1, number2 int) int {
+	if number1 < number2 {
+		return number1
+	}
+
+	return number2
+}

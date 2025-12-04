@@ -9,7 +9,7 @@ import (
 )
 
 type Solution interface {
-	ParseLine(line string) error
+	ParseLine(line string, lineNumber int) error
 	SolvePart1() string
 	SolvePart2() string
 }
@@ -56,14 +56,17 @@ func openFileAndParse(solution Solution, fileName string) error {
 	defer utils.CloseFile(file)
 
 	scanner := bufio.NewScanner(file)
+	lineNumber := 1
 
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		err := solution.ParseLine(line)
+		err := solution.ParseLine(line, lineNumber)
 		if err != nil {
 			return err
 		}
+
+		lineNumber++
 	}
 
 	if err := scanner.Err(); err != nil {

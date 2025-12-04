@@ -15,7 +15,7 @@ type IdRange struct {
 	lastId  int64
 }
 
-func (day *Day2) ParseLine(line string) error {
+func (day *Day2) ParseLine(line string, _ int) error {
 	idRanges := strings.Split(line, ",")
 
 	for _, idRange := range idRanges {
