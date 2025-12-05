@@ -64,10 +64,12 @@ EOF
 cat > "$PARSER_FILE" <<EOF
 package _$YEAR
 
+import "bufio"
+
 type Day$DAY struct {
 }
 
-func (day *Day$DAY) ParseLine(line string, lineNumber int) error {
+func (day *Day$DAY) ParseLine(scanner *bufio.Scanner) error {
 	return nil
 }
 EOF

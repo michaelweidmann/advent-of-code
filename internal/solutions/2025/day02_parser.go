@@ -2,6 +2,7 @@ package _2025
 
 import (
 	"advent-of-code/internal/utils"
+	"bufio"
 	"fmt"
 	"strings"
 )
@@ -15,27 +16,31 @@ type IdRange struct {
 	lastId  int64
 }
 
-func (day *Day2) ParseLine(line string, _ int) error {
-	idRanges := strings.Split(line, ",")
+func (day *Day2) ParseLine(scanner *bufio.Scanner) error {
+	for scanner.Scan() {
+		line := scanner.Text()
 
-	for _, idRange := range idRanges {
-		idRangeSplit := strings.Split(idRange, "-")
+		idRanges := strings.Split(line, ",")
 
-		if len(idRangeSplit) != 2 {
-			return fmt.Errorf("invalid format of an ID range: %s", idRange)
+		for _, idRange := range idRanges {
+			idRangeSplit := strings.Split(idRange, "-")
+
+			if len(idRangeSplit) != 2 {
+				return fmt.Errorf("invalid format of an ID range: %s", idRange)
+			}
+
+			firstId, err := utils.ParseInt64(idRangeSplit[0])
+			if err != nil {
+				return err
+			}
+
+			secondId, err := utils.ParseInt64(idRangeSplit[1])
+			if err != nil {
+				return err
+			}
+
+			day.idRanges = append(day.idRanges, IdRange{firstId, secondId})
 		}
-
-		firstId, err := utils.ParseInt64(idRangeSplit[0])
-		if err != nil {
-			return err
-		}
-
-		secondId, err := utils.ParseInt64(idRangeSplit[1])
-		if err != nil {
-			return err
-		}
-
-		day.idRanges = append(day.idRanges, IdRange{firstId, secondId})
 	}
 
 	return nil

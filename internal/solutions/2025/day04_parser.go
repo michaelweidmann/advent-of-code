@@ -1,6 +1,9 @@
 package _2025
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+)
 
 type Day4 struct {
 	// True means there is a roll of paper located on that position.
@@ -8,22 +11,30 @@ type Day4 struct {
 	grid [][]bool
 }
 
-func (day *Day4) ParseLine(line string, lineNumber int) error {
-	if day.grid == nil {
-		day.grid = make([][]bool, 0)
-	}
+func (day *Day4) ParseLine(scanner *bufio.Scanner) error {
+	lineNumber := 1
 
-	day.grid = append(day.grid, make([]bool, len(line)))
-	row := day.grid[lineNumber-1]
+	for scanner.Scan() {
+		line := scanner.Text()
 
-	for column, fieldContent := range line {
-		if fieldContent == '@' {
-			row[column] = true
-		} else if fieldContent == '.' {
-			row[column] = false
-		} else {
-			return fmt.Errorf("invalid element on field %c", fieldContent)
+		if day.grid == nil {
+			day.grid = make([][]bool, 0)
 		}
+
+		day.grid = append(day.grid, make([]bool, len(line)))
+		row := day.grid[lineNumber-1]
+
+		for column, fieldContent := range line {
+			if fieldContent == '@' {
+				row[column] = true
+			} else if fieldContent == '.' {
+				row[column] = false
+			} else {
+				return fmt.Errorf("invalid element on field %c", fieldContent)
+			}
+		}
+
+		lineNumber++
 	}
 
 	return nil

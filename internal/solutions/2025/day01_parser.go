@@ -1,6 +1,7 @@
 package _2025
 
 import (
+	"bufio"
 	"fmt"
 	"strconv"
 )
@@ -21,18 +22,23 @@ type Day01 struct {
 	InstructionSet []InstructionSet
 }
 
-func (day *Day01) ParseLine(line string, _ int) error {
-	direction, err := parseDirection(line[:1])
-	if err != nil {
-		return err
+func (day *Day01) ParseLine(scanner *bufio.Scanner) error {
+	for scanner.Scan() {
+		line := scanner.Text()
+
+		direction, err := parseDirection(line[:1])
+		if err != nil {
+			return err
+		}
+
+		amount, err := strconv.Atoi(line[1:])
+		if err != nil {
+			return err
+		}
+
+		appendInstructionSet(day, direction, amount)
 	}
 
-	amount, err := strconv.Atoi(line[1:])
-	if err != nil {
-		return err
-	}
-
-	appendInstructionSet(day, direction, amount)
 	return nil
 }
 
