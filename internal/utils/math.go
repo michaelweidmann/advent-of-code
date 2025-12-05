@@ -34,3 +34,11 @@ func Min(number1, number2 int) int {
 
 	return number2
 }
+
+func MaxInt64(number1, number2 int64) int64 {
+	if number1 > number2 {
+		return number1
+	}
+
+	return number2
+}

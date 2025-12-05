@@ -8,10 +8,10 @@ import (
 )
 
 type Day2 struct {
-	idRanges []IdRange
+	idRanges []IdRangeDay2
 }
 
-type IdRange struct {
+type IdRangeDay2 struct {
 	firstId int64
 	lastId  int64
 }
@@ -39,7 +39,7 @@ func (day *Day2) ParseLine(scanner *bufio.Scanner) error {
 				return err
 			}
 
-			day.idRanges = append(day.idRanges, IdRange{firstId, secondId})
+			day.idRanges = append(day.idRanges, IdRangeDay2{firstId, secondId})
 		}
 	}
 

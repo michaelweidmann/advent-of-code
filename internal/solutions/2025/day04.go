@@ -31,14 +31,14 @@ func (day *Day4) SolvePart1() string {
 }
 
 func (day *Day4) SolvePart2() string {
-	grid := copyGrid(day.grid)
+	grid := utils.CopySlice(day.grid)
 	maxRowNumber := len(grid) - 1
 	maxColumnNumber := len(grid[0]) - 1
 	removedPaperRolls := 0
 	paperRollsRemoved := true
 
 	for paperRollsRemoved {
-		copiedGrid := copyGrid(grid)
+		copiedGrid := utils.CopySlice(grid)
 		paperRollsRemoved = false
 
 		for rowNumber, row := range grid {
@@ -86,10 +86,4 @@ func isFieldAccessable(grid [][]bool, rowNumber, columnNumber, maxRowNumber, max
 	}
 
 	return false
-}
-
-func copyGrid(grid [][]bool) [][]bool {
-	gridCopy := make([][]bool, len(grid))
-	copy(gridCopy, grid)
-	return gridCopy
 }

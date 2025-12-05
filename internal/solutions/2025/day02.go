@@ -62,7 +62,7 @@ func (day *Day2) SolvePart2() string {
 	return calculateSumOfAllInvalidIds(day.idRanges, isIdInvalid)
 }
 
-func calculateSumOfAllInvalidIds(idRanges []IdRange, isIdInvalid IsIdInvalidFunc) string {
+func calculateSumOfAllInvalidIds(idRanges []IdRangeDay2, isIdInvalid IsIdInvalidFunc) string {
 	var sumOfAllInvalidIds int64 = 0
 
 	for _, idRange := range idRanges {
@@ -73,7 +73,7 @@ func calculateSumOfAllInvalidIds(idRanges []IdRange, isIdInvalid IsIdInvalidFunc
 	return utils.Int64ToString(sumOfAllInvalidIds)
 }
 
-func getSumOfInvalidIdsInIdRange(idRange IdRange, isIdInvalid IsIdInvalidFunc) int64 {
+func getSumOfInvalidIdsInIdRange(idRange IdRangeDay2, isIdInvalid IsIdInvalidFunc) int64 {
 	var sum int64 = 0
 
 	for id := idRange.firstId; id <= idRange.lastId; id++ {
