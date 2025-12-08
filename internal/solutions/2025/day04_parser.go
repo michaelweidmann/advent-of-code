@@ -12,14 +12,11 @@ type Day4 struct {
 }
 
 func (day *Day4) ParseLine(scanner *bufio.Scanner) error {
+	day.grid = make([][]bool, 0)
 	lineNumber := 1
 
 	for scanner.Scan() {
 		line := scanner.Text()
-
-		if day.grid == nil {
-			day.grid = make([][]bool, 0)
-		}
 
 		day.grid = append(day.grid, make([]bool, len(line)))
 		row := day.grid[lineNumber-1]
